@@ -1,0 +1,4 @@
+node_modules
+.env
+result_cowin.json
+jars_dir
