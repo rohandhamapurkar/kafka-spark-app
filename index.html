@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			.container {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100%;
+			}
+			.input-container {
+				background-color: #e22e2e;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-end;
+				height: 40vh;
+				width: 45vh;
+				border-radius: 50px;
+			}
+			input,
+			label {
+				color: white;
+				margin: 10px;
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+			}
+			button {
+				font-family: Verdana, Geneva, Tahoma, sans-serif;
+				margin-top: 20px;
+				align-self: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="input-container">
+				<label style="align-self: flex-start; padding-bottom: 15px">Loan Calculator</label>
+				<div>
+					<label for="name">Principal Amount (₹)</label>
+					<input type="number" name="" id="principal-amt" />
+				</div>
+				<div>
+					<label for="name">Interest Rate p.a</label>
+					<input type="number" name="" id="rate" />
+				</div>
+				<div>
+					<label for="name">Duration in months</label>
+					<input type="number" name="" id="duration" />
+				</div>
+
+				<div style="align-self: center">
+					<button id="reset">Reset</button>
+					<button id="calculate">Calculate</button>
+				</div>
+
+				<div style="align-self: center; margin-top: 10px">
+					<label for="name">EMI(₹) :</label>
+					<input type="text" id="emi" disabled />
+				</div>
+			</div>
+		</div>
+		<script>
+			const principalAmt = document.getElementById("principal-amt")
+			const rate = document.getElementById("rate")
+			const duration = document.getElementById("duration")
+			const emi = document.getElementById("emi")
+			const btn = document.getElementById("calculate")
+			btn.onclick = function () {
+				if (principalAmt.value && rate.value && duration.value) {
+					const interest = (principalAmt.value * (rate.value * 0.01)) / duration.value
+
+					// Calculating total payment
+					const total = (principalAmt.value / duration.value + interest).toFixed(2)
+
+					emi.value = total
+				}
+			}
+			const reset = document.getElementById("reset")
+
+			reset.onclick = function () {
+				principalAmt.value = ""
+				rate.value = ""
+				duration.value = ""
+				emi.value = ""
+			}
+		</script>
+	</body>
+</html>
